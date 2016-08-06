@@ -20,8 +20,7 @@ class StatusAdmin extends BaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('value')
+            ->add('name')    
             ->add('string_value')
             ;
     }
@@ -30,8 +29,7 @@ class StatusAdmin extends BaseAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('value')
+            ->add('name')    
             ->add('string_value')
             ;
     }
@@ -40,8 +38,7 @@ class StatusAdmin extends BaseAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('value')
+            ->add('name')
             ->add('string_value')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -49,5 +46,14 @@ class StatusAdmin extends BaseAdmin
                 ),
             ))    
         ;
+    }
+    
+    // generate status values
+    public function prePersist($entity)
+    {
+        $entityManager = $this->getModelManager()->getEntityManager($this->getClass());
+        $maxId = $entityManager->getRepository('AppBundle:Status')->findMaxById();
+        $entity->setValue(1000 + $maxId);
+        $entityManager->persist($entity);
     }
 }
