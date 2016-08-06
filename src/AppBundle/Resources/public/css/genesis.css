@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 Feb, 2016, 11:44:20 AM
+    Author     : deepak
+*/
+
+#test_voucher_amount, #test_voucher_voucherId 
+{
+    width: 260px;
+}
+
+#test_voucher_submit
+{
+    margin-top: 10px;
+    width: 150px
+}
+
+#item-box
+{
+    border: 3px solid #000;
+    height: 65px;
+    margin-top: 55px;
+    width: 240px;
+}
+
+#amount-error-box, #voucherid-error-box
+{
+    height:30px;
+}
+
+.genesis-voucher-links
+{
+    margin-left: 20px;
+}
+
+#amount-error-image, #voucherid-error-image, #amount-success-image, #voucherId-success-image
+{
+    width: 30px;
+}
+
+#amount-success-image, #voucherId-success-image
+{
+    margin-right: 430px;
+}

@@ -38,7 +38,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-#    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+#    exception_controller: 'AppBundle\Controller\ExceptionController::showAction'
 #    form:
 #        resources:
 #            - 'SonataCoreBundle:Form:datepicker.html.twig'
@@ -71,6 +71,10 @@ sonata_block:
 sonata_admin:
     title:      Budai
 #    title_logo: bundles/tpmain/img/logo.png
+    templates:
+        edit: AppBundle:Admin:edit.html.twig
+        user_block: AppBundle:Admin:user_block.html.twig
+        layout: AppBundle:Admin:standard_layout.html.twig
     dashboard:
         blocks:
             - { position: left, type: sonata.admin.block.admin_list }
@@ -150,10 +154,9 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-#        budai:
-#            type: stream
-#            path: "%kernel.logs_dir%/budai.log"
-#            level: info
-#            channels: [budai]
-#            formatter: line_formatter
+        exception:
+            type: stream
+            path: "%kernel.logs_dir%/exception.log"
+            level: error
+            channels: [exception]    
   

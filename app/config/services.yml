@@ -7,8 +7,51 @@ services:
     sonata.admin.user:
         class: AppBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.fee.label" }
+            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.user" }
         arguments:
             - ~
             - AppBundle\Entity\User
             - ~
+          
+    sonata.admin.status:
+        class: AppBundle\Admin\StatusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.status" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Status
+            - ~         
+          
+    sonata.admin.product:
+        class: AppBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.product" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Product
+            - ~
+          
+    sonata.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.category" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Category
+            - ~    
+            
+    sonata.admin.product_category:
+        class: AppBundle\Admin\ProductCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label_translator_strategy: "sonata.admin.label.strategy.native", label: "admin.product_category" }
+        arguments:
+            - ~
+            - AppBundle\Entity\ProductCategory
+            - ~           
+
+    budai.exception_listener:
+        class: AppBundle\EventListener\ExceptionListener
+        arguments: ["@logger"]
+        tags:
+          - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+          - { name: monolog.logger, channel: exception }

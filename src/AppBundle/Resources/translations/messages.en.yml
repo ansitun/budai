@@ -1,0 +1,6 @@
+admin:
+    status: General States
+    product: Products
+    category: Categories
+    product_category: Product Category Mapping
+    user: All Users

@@ -25,11 +25,6 @@ class ProductCategory
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $name;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
      */
@@ -134,30 +129,6 @@ class ProductCategory
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return ProductCategory
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
