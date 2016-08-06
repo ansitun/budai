@@ -70,7 +70,7 @@ sonata_block:
             
 sonata_admin:
     title:      Budai
-    title_logo: bundles/tpmain/img/logo.png
+#    title_logo: bundles/tpmain/img/logo.png
     dashboard:
         blocks:
             - { position: left, type: sonata.admin.block.admin_list }
