@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20160806200407 extends AbstractMigration
+class Version20160807021730 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20160806200407 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE product_category DROP name');
+        $this->addSql('ALTER TABLE User ADD user_type ENUM(\'adm\', \'ven\', \'cust\')');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20160806200407 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE product_category ADD name VARCHAR(100) DEFAULT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('ALTER TABLE User DROP user_type');
     }
 }

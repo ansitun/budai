@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ProductCategory entity.
+ * OrderBasket entity.
  *
  * @author Vinod Moahn
  *
@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ProductCategory")
+ * @ORM\Table(name="OrderBasket")
  */
-class ProductCategory
+class OrderBasket
 {
     /**
      * @ORM\Id
@@ -24,6 +24,12 @@ class ProductCategory
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Order")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
+     */
+    private $order;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product")
@@ -32,16 +38,15 @@ class ProductCategory
     private $product;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $category;
-    
+    private $quantity;
+
     /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
-    private $user;
+    private $status;
     
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -52,7 +57,7 @@ class ProductCategory
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $created_date_time;
-
+    
     /**
      * @ORM\PreUpdate
      */
@@ -133,11 +138,59 @@ class ProductCategory
     }
 
     /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     *
+     * @return OrderBasket
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set order
+     *
+     * @param \AppBundle\Entity\Order $order
+     *
+     * @return OrderBasket
+     */
+    public function setOrder(\AppBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \AppBundle\Entity\Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
      * Set product
      *
      * @param \AppBundle\Entity\Product $product
      *
-     * @return ProductCategory
+     * @return OrderBasket
      */
     public function setProduct(\AppBundle\Entity\Product $product)
     {
@@ -157,50 +210,26 @@ class ProductCategory
     }
 
     /**
-     * Set category
+     * Set status
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param \AppBundle\Entity\Status $status
      *
-     * @return ProductCategory
+     * @return OrderBasket
      */
-    public function setCategory(\AppBundle\Entity\Category $category)
+    public function setStatus(\AppBundle\Entity\Status $status)
     {
-        $this->category = $category;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get status
      *
-     * @return \AppBundle\Entity\Category
+     * @return \AppBundle\Entity\Status
      */
-    public function getCategory()
+    public function getStatus()
     {
-        return $this->category;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return ProductCategory
-     */
-    public function setUser(\AppBundle\Entity\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
+        return $this->status;
     }
 }
