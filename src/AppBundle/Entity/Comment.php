@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ProductCategory entity.
+ * Comment entity.
  *
  * @author Vinod Moahn
  *
@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ProductCategory")
+ * @ORM\Table(name="Comment")
  */
-class ProductCategory
+class Comment
 {
     /**
      * @ORM\Id
@@ -26,16 +26,14 @@ class ProductCategory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    private $product;
-    
+    private $title;
+
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="text", length=65530, nullable=true)
      */
-    private $category;
+    private $description;
     
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -43,6 +41,18 @@ class ProductCategory
      */
     private $user;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     */
+    private $product;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
+     */
+    private $status;
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -87,7 +97,7 @@ class ProductCategory
 
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -133,11 +143,83 @@ class ProductCategory
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Comment
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Comment
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set product
      *
      * @param \AppBundle\Entity\Product $product
      *
-     * @return ProductCategory
+     * @return Comment
      */
     public function setProduct(\AppBundle\Entity\Product $product)
     {
@@ -157,50 +239,26 @@ class ProductCategory
     }
 
     /**
-     * Set category
+     * Set status
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param \AppBundle\Entity\Status $status
      *
-     * @return ProductCategory
+     * @return Comment
      */
-    public function setCategory(\AppBundle\Entity\Category $category)
+    public function setStatus(\AppBundle\Entity\Status $status)
     {
-        $this->category = $category;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get status
      *
-     * @return \AppBundle\Entity\Category
+     * @return \AppBundle\Entity\Status
      */
-    public function getCategory()
+    public function getStatus()
     {
-        return $this->category;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return ProductCategory
-     */
-    public function setUser(\AppBundle\Entity\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
+        return $this->status;
     }
 }

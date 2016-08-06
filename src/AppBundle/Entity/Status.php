@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping\Index as Index;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\StatusRepository")
  * @ORM\Table(indexes={@Index(name="status_idx", columns={"string_value", "value"})})
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="Status")
  */
 class Status
 {

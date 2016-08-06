@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping AS ORM;
  */
 class User extends BaseUser
 {
+    public static $valid_types = array(
+        'adm' => 'Adm',
+        'ven' => 'Ven',
+        'cust' => 'Cust',
+    );
+    
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -19,8 +25,37 @@ class User extends BaseUser
      */
     protected $id;
     
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('adm', 'ven', 'cust')")
+     */
+    private $user_type;
+    
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * Set userType
+     *
+     * @param string $userType
+     *
+     * @return User
+     */
+    public function setUserType($userType)
+    {
+        $this->user_type = $userType;
+
+        return $this;
+    }
+
+    /**
+     * Get userType
+     *
+     * @return string
+     */
+    public function getUserType()
+    {
+        return $this->user_type;
     }
 }

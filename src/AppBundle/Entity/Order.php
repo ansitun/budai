@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ProductCategory entity.
+ * Rating entity.
  *
  * @author Vinod Moahn
  *
@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ProductCategory")
+ * @ORM\Table(name="Order")
  */
-class ProductCategory
+class Order
 {
     /**
      * @ORM\Id
@@ -26,22 +26,31 @@ class ProductCategory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(name="sku", type="string", length=30, nullable=false)
      */
-    private $product;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
-     */
-    private $category;
+    private $order_id;
     
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
+    
+    /**
+     * @ORM\Column(type="decimal", scale=2, precision=10, nullable=true)
+     */
+    private $total_price;
+    
+    /**
+     * @ORM\Column(type="decimal", scale=2, precision=10, nullable=true)
+     */
+    private $discounted_price;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Address")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", nullable=false)
+     */
+    private $address;
     
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -87,7 +96,7 @@ class ProductCategory
 
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -133,51 +142,75 @@ class ProductCategory
     }
 
     /**
-     * Set product
+     * Set orderId
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param string $orderId
      *
-     * @return ProductCategory
+     * @return Order
      */
-    public function setProduct(\AppBundle\Entity\Product $product)
+    public function setOrderId($orderId)
     {
-        $this->product = $product;
+        $this->order_id = $orderId;
 
         return $this;
     }
 
     /**
-     * Get product
+     * Get orderId
      *
-     * @return \AppBundle\Entity\Product
+     * @return string
      */
-    public function getProduct()
+    public function getOrderId()
     {
-        return $this->product;
+        return $this->order_id;
     }
 
     /**
-     * Set category
+     * Set totalPrice
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param string $totalPrice
      *
-     * @return ProductCategory
+     * @return Order
      */
-    public function setCategory(\AppBundle\Entity\Category $category)
+    public function setTotalPrice($totalPrice)
     {
-        $this->category = $category;
+        $this->total_price = $totalPrice;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get totalPrice
      *
-     * @return \AppBundle\Entity\Category
+     * @return string
      */
-    public function getCategory()
+    public function getTotalPrice()
     {
-        return $this->category;
+        return $this->total_price;
+    }
+
+    /**
+     * Set discountedPrice
+     *
+     * @param string $discountedPrice
+     *
+     * @return Order
+     */
+    public function setDiscountedPrice($discountedPrice)
+    {
+        $this->discounted_price = $discountedPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get discountedPrice
+     *
+     * @return string
+     */
+    public function getDiscountedPrice()
+    {
+        return $this->discounted_price;
     }
 
     /**
@@ -185,7 +218,7 @@ class ProductCategory
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return ProductCategory
+     * @return Order
      */
     public function setUser(\AppBundle\Entity\User $user)
     {
@@ -202,5 +235,29 @@ class ProductCategory
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\Address $address
+     *
+     * @return Order
+     */
+    public function setAddress(\AppBundle\Entity\Address $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

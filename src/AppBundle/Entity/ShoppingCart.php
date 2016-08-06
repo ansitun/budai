@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ProductCategory entity.
+ * ShoppingCart entity.
  *
  * @author Vinod Moahn
  *
@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ProductCategory")
+ * @ORM\Table(name="ShoppingCart")
  */
-class ProductCategory
+class ShoppingCart
 {
     /**
      * @ORM\Id
@@ -24,7 +24,7 @@ class ProductCategory
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
@@ -32,10 +32,9 @@ class ProductCategory
     private $product;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $category;
+    private $quantity;
     
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -52,7 +51,7 @@ class ProductCategory
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $created_date_time;
-
+    
     /**
      * @ORM\PreUpdate
      */
@@ -133,11 +132,35 @@ class ProductCategory
     }
 
     /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     *
+     * @return ShoppingCart
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
      * Set product
      *
      * @param \AppBundle\Entity\Product $product
      *
-     * @return ProductCategory
+     * @return ShoppingCart
      */
     public function setProduct(\AppBundle\Entity\Product $product)
     {
@@ -157,35 +180,11 @@ class ProductCategory
     }
 
     /**
-     * Set category
-     *
-     * @param \AppBundle\Entity\Category $category
-     *
-     * @return ProductCategory
-     */
-    public function setCategory(\AppBundle\Entity\Category $category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return ProductCategory
+     * @return ShoppingCart
      */
     public function setUser(\AppBundle\Entity\User $user)
     {
