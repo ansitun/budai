@@ -84,6 +84,11 @@ class Product
      * @ORM\Column(type="string", nullable=true, length=511)
      */
     private $thumbnail_url;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $show_in_banner = false;
 
     /**
      * Constructor.
@@ -410,5 +415,29 @@ class Product
     public function getThumbnailUrl()
     {
         return $this->thumbnail_url;
+    }
+
+    /**
+     * Set showInBanner
+     *
+     * @param boolean $showInBanner
+     *
+     * @return Product
+     */
+    public function setShowInBanner($showInBanner)
+    {
+        $this->show_in_banner = $showInBanner;
+
+        return $this;
+    }
+
+    /**
+     * Get showInBanner
+     *
+     * @return boolean
+     */
+    public function getShowInBanner()
+    {
+        return $this->show_in_banner;
     }
 }
