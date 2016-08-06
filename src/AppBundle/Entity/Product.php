@@ -80,6 +80,21 @@ class Product
      * @ORM\Column(type="string", nullable=true, length=511)
      */
     private $image_url;
+    
+    /**
+     * @ORM\Column(type="string", nullable=true, length=511)
+     */
+    private $image_url2;
+    
+    /**
+     * @ORM\Column(type="string", nullable=true, length=511)
+     */
+    private $image_url3;
+    
+    /**
+     * @ORM\Column(type="string", nullable=true, length=511)
+     */
+    private $image_url4;
 
     /**
      * @ORM\Column(type="string", nullable=true, length=511)
@@ -411,5 +426,77 @@ class Product
     public function getThumbnailUrl()
     {
         return $this->thumbnail_url;
+    }
+
+    /**
+     * Set imageUrl2
+     *
+     * @param string $imageUrl2
+     *
+     * @return Product
+     */
+    public function setImageUrl2($imageUrl2)
+    {
+        $this->image_url2 = $imageUrl2;
+
+        return $this;
+    }
+
+    /**
+     * Get imageUrl2
+     *
+     * @return string
+     */
+    public function getImageUrl2()
+    {
+        return $this->image_url2;
+    }
+
+    /**
+     * Set imageUrl3
+     *
+     * @param string $imageUrl3
+     *
+     * @return Product
+     */
+    public function setImageUrl3($imageUrl3)
+    {
+        $this->image_url3 = $imageUrl3;
+
+        return $this;
+    }
+
+    /**
+     * Get imageUrl3
+     *
+     * @return string
+     */
+    public function getImageUrl3()
+    {
+        return $this->image_url3;
+    }
+
+    /**
+     * Set imageUrl4
+     *
+     * @param string $imageUrl4
+     *
+     * @return Product
+     */
+    public function setImageUrl4($imageUrl4)
+    {
+        $this->image_url4 = $imageUrl4;
+
+        return $this;
+    }
+
+    /**
+     * Get imageUrl4
+     *
+     * @return string
+     */
+    public function getImageUrl4()
+    {
+        return $this->image_url4;
     }
 }
