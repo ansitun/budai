@@ -84,7 +84,7 @@ class Product
      * @ORM\Column(type="string", nullable=true, length=511)
      */
     private $thumbnail_url;
-
+    
     /**
      * Constructor.
      */
