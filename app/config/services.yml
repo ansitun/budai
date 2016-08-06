@@ -55,3 +55,12 @@ services:
         tags:
           - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
           - { name: monolog.logger, channel: exception }
+          
+    budai.abstract_service:
+        abstract: true
+        calls:
+            - [setDoctrine, ["@doctrine"]]
+            
+    budai.product:
+        class: AppBundle\Service\ProductRequestService
+        parent: budai.abstract_service

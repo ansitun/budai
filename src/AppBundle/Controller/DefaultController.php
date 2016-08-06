@@ -13,7 +13,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $productService = $this->get('budai.product');
         
-        return $this->render('AppBundle::index.html.twig');
+        $products = $productService->homeProducts();
+        
+        //ladybug_dump_die($products['featured']);
+        
+        return $this->render('AppBundle::index.html.twig', array('products' => $products));
     }
 }
