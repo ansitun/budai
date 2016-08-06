@@ -82,6 +82,11 @@ class Address
     private $created_date_time;
     
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $last_update_date_time;
+    
+    /**
      * @ORM\PreUpdate
      */
     public function onPreUpdate()
