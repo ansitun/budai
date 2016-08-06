@@ -31,7 +31,7 @@ class ProductCategoryAdmin extends BaseAdmin
                     'empty_value' => "Please select a Category",
                     ))  
             ->add('user', 'entity', array('class' => 'AppBundle\Entity\User', 
-                    'property' => 'name',
+                    'property' => 'username',
                     'empty_data'  => null,
                     'empty_value' => "Please select the user",
                     ))      
