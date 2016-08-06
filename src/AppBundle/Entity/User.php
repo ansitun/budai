@@ -58,4 +58,9 @@ class User extends BaseUser
     {
         return $this->user_type;
     }
+    
+    public function __toString()
+    {
+        return $this->username;
+    }
 }
