@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
         source: function(request, response) {
             $.ajax({
                 url: "search",
-                data: {q: request.term, },
+                data: {term: request.term, },
                 dataType: "json",
                 success: function(data) {
                     var a = [];
@@ -14,17 +14,12 @@ jQuery(document).ready(function($){
                         }
                     }
                     response(a);
-                },
-                select: function(event, ui) { 
-                        console.log(ui);
                 }
             });
-        }
-    });
-    
-    $( "#bing" ).bind( "autocompleteselect", function(event, ui) {
-        console.log(ui);
-        
+        },
+        select: function(event, ui) { 
+                        console.log(ui);
+                }
     });
     
     // jQuery sticky Menu
