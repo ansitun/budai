@@ -9,16 +9,27 @@ jQuery(document).ready(function($){
                 success: function(data) {
                     var a = [];
                     for ( var i in data  ) {
-                        if ( 'undefined' !== typeof data[i]["name"] ) {
-                            a.push(data[i]["name"]);
+                        if ( 'undefined' !== typeof data[i].name ) {
+                            a.push(data[i]);
                         }
                     }
-                    response(a);
+                    
+                    console.log(a);
+                    response($.map(a, function (item) {
+                            return {
+                                value: item.name,
+                                sku: item.sku
+                            };
+                        }));
                 }
             });
         },
-        select: function(event, ui) { 
-                        console.log(ui);
+        select: function(event, ui) {
+                   var ele = $("#bing");
+                   var homeLink = ele.attr("href");
+                   ele.attr("href",(homeLink + "productDetail?sku=" + ui.item.sku));
+                   
+                   return;
                 }
     });
     
