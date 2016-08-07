@@ -23,7 +23,7 @@ class CategoryRequestService extends AbstractService
         $doctrine = $this->getDoctrine();
         $categoryRepo = $doctrine->getRepository("AppBundle:Category");
         
-        $category = $categoryRepo->getActiveCategories($status);
+        $category = $categoryRepo->getActiveCategories();
         
         return $category;
     }
