@@ -6,8 +6,6 @@
  *
  * @category Repository class
  */
-
-
 namespace AppBundle\Entity\Repository;
 
 class ProductRepository extends GenericRepository

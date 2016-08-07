@@ -19,7 +19,8 @@ class ProductRequestService extends AbstractService {
      *
      * @return array
      */
-    public function customProducts($status) {
+    public function customProducts($status) 
+    {
         $doctrine = $this->getDoctrine();
         $productRepo = $doctrine->getRepository("AppBundle:Product");
 
@@ -31,11 +32,12 @@ class ProductRequestService extends AbstractService {
     /**
      * Function to return products based on status
      *
-     * @param string $status
+     * @param string $category
      *
      * @return array
      */
-    public function productsByCategory($category) {
+    public function productsByCategory($category) 
+    {
         $doctrine = $this->getDoctrine();
         $productRepo = $doctrine->getRepository("AppBundle:Product");
 
@@ -44,7 +46,15 @@ class ProductRequestService extends AbstractService {
         return $products;
     }
 
-    public function categoryByProduct($sku) {
+    /**
+     * Function to return combined category name based on status
+     *
+     * @param string $sku
+     *
+     * @return array
+     */
+    public function categoryByProduct($sku) 
+    {
         $doctrine = $this->getDoctrine();
         $productRepo = $doctrine->getRepository("AppBundle:Product");
 
@@ -57,5 +67,4 @@ class ProductRequestService extends AbstractService {
 
         return $categoryName;
     }
-
 }
