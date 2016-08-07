@@ -26,4 +26,22 @@ class ProductRepository extends GenericRepository
         
         return $products;
     }
+    
+    public function getProductsBySku($sku) {
+        $products = $this->createQueryBuilder('p')
+            ->select('p.name as name')
+            ->addSelect('p.description as description')
+            ->addSelect('p.image_url as url')   
+            ->addSelect('p.price as originalPrice')   
+            ->addSelect('p.discount_price as discountPrice')
+            ->join('p.status', 's')
+            ->where("s.string_value NOT IN ('DELETED', 'INACTIVE')")  
+            ->andWhere("p.sku = :sku")
+            ->setParameter('sku', $sku)    
+            ->getQuery()
+            ->getArrayResult()
+        ;
+        
+        return $products;
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generic functions related to home page.
+ * Functions related to Products
  *
  * @author
  *
@@ -12,19 +12,18 @@ namespace AppBundle\Service;
 class ProductRequestService extends AbstractService
 {
     /**
-     * Function to validate satn.
+     * Function to return products based on status.
      *
-     * @param array $content
+     * @param string $status
      *
      * @return array
      */
-    public function homeProducts()
+    public function customProducts($status)
     {
         $doctrine = $this->getDoctrine();
         $productRepo = $doctrine->getRepository("AppBundle:Product");
         
-        $products["featured"] = $productRepo->customProducts('FEATURED');
-        $products["latest"] = $productRepo->customProducts('LATEST');
+        $products= $productRepo->customProducts($status);
         
         return $products;
     }
