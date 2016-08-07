@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ustora Demo</title>
+    <title>Arts & Crafts</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -94,9 +94,15 @@
         </div>
     </div> <!-- End mainmenu area -->
     
+    <!-- home page -->
     {% block main %}
         
     {% endblock%}
+    
+    <!-- product details -->
+    {% block productDetail %} 
+        
+    {% endblock%}    
     
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -104,7 +110,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>u<span>Stora</span></h2>
+                        <h2>Arts & <span>Crafts</span></h2>
                         <p>
                             We feature crafts, exhibitions, galleries and famous artists who reveal and discuss their finest work.
                         </p>
@@ -137,7 +143,7 @@
                            {% for cat in category %}
                                
                                
-                            <li><a href="#"> {{ cat['name'] }} </a></li>
+                            <li><a href="product?category={{ cat['id'] }}"> {{ cat['name'] }} </a></li>
                             {% endfor %}
                             
                         </ul>                        
@@ -165,7 +171,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2016 Arts&Crafts. All Rights Reserved. <a href="#" target="_blank">freshDesignweb.com</a></p>
+                        <p>&copy; 2016 Arts&Crafts. All Rights Reserved. <a href="#" target="_blank">artsncrafts.com</a></p>
                     </div>
                 </div>
                 

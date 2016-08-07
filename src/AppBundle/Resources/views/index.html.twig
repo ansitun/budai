@@ -14,7 +14,7 @@
                                                     <strong> &nbsp;Rs.{{ product["originalPrice"] - product["discountPrice"] }} /-</strong></span>
                                         </h2>
                                         <h4 class="caption subtitle">{{ product["description"] }}</h4>
-                                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                                        <a class="caption button-radius" href="productDetail?sku={{ product["sku"] }}"><span class="icon"></span>Shop now</a>
                                 </div>
                         </li>
                     {% endfor %}
@@ -69,10 +69,9 @@
                                     <img src="{{ product["url"] }}" alt="">
                                     <div class="product-hover">
                                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
-                                <h2><a href="single-product.html">{{ product["name"] }}</a></h2>
+                                <h2><a href="productDetail?sku={{ product["sku"] }}">{{ product["name"] }}</a></h2>
                                 <div class="product-carousel-price">
                                     <ins>Rs.{{ product["originalPrice"] - product["discountPrice"] }}/-</ins> <del>Rs.{{ product["originalPrice"]}}/-</del>
                                 </div> 

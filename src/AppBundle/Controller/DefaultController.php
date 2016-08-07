@@ -30,15 +30,15 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("productDetails", name="prodectDetails")
+     * @Route("productDetail", name="prodectDetail")
      */
-    public function productDetailsAction(Request $request)
+    public function productDetailAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $sku = $request->query->get('sku');
         
         // Show error when sku is not valied
-        if(!$sku || !is_numeric($sku)) {
+        if(!$sku) {
             return $this->render('AppBundle::error.html.twig', array('errorCode' => 404, 'errorMsg' => 'Product Not Found'));
         }
         
@@ -55,7 +55,11 @@ class DefaultController extends Controller
         $products['product']['category'] = $productService->categoryByProduct($productDetails[0]['sku']);
         $products["latest"] = $productService->customProducts('LATEST');
 
-        return $this->render('AppBundle::productDetail.html.twig', array('products' => $products));
+        // Get Categories using category service
+        $categoryService = $this->get('budai.category');
+        $category = $categoryService->getAllCategory();
+        
+        return $this->render('AppBundle::productDetail.html.twig', array('products' => $products, 'category' => $category));
     }
     
     /**
@@ -77,7 +81,12 @@ class DefaultController extends Controller
         $products = array();
         $products['products'] = $productDetails;
         $products["latest"] = $productService->customProducts('LATEST');
+        
+        // Get Categories using category service
+        $categoryService = $this->get('budai.category');
+        $category = $categoryService->getAllCategory();
+        
                 
-        return $this->render('AppBundle::products.html.twig', array('products' => $products));
+        return $this->render('AppBundle::products.html.twig', array('products' => $products, 'category' => $category));
     }
 }
