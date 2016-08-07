@@ -20,9 +20,13 @@ class DefaultController extends Controller
         $products = array();
         $products["featured"] = $productService->customProducts('FEATURED');
         $products["latest"] = $productService->customProducts('LATEST');
-                
+
+        // Get Categories using category service
+        $categoryService = $this->get('budai.category');
+        $category = $categoryService->getAllCategory();
+        
         // Render html
-        return $this->render('AppBundle::index.html.twig', array('products' => $products));
+        return $this->render('AppBundle::index.html.twig', array('products' => $products, 'category' => $category));
     }
     
     /**

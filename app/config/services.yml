@@ -64,3 +64,7 @@ services:
     budai.product:
         class: AppBundle\Service\ProductRequestService
         parent: budai.abstract_service
+        
+    budai.category:
+        class: AppBundle\Service\CategoryRequestService
+        parent: budai.abstract_service
