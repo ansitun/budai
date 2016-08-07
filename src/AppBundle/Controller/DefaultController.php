@@ -52,8 +52,32 @@ class DefaultController extends Controller
         $productService = $this->get('budai.product');
         $products = array();
         $products['product'] = $productDetails[0];
+        $products['product']['category'] = $productService->categoryByProduct($productDetails[0]['sku']);
+        $products["latest"] = $productService->customProducts('LATEST');
+
+        return $this->render('AppBundle::productDetail.html.twig', array('products' => $products));
+    }
+    
+    /**
+     * @Route("product", name="prodect")
+     */
+    public function productAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $category = $request->query->get('category');
+        $productService = $this->get('budai.product');
+        
+        // Get products details or return error
+        $productDetails = $productService->productsByCategory($category);
+        if(!$productDetails) {
+            return $this->render('AppBundle::error.html.twig', array('errorCode' => 404, 'errorMsg' => 'Category Not Found'));
+        }
+                
+        // Get Products service to show the latest products at bottom
+        $products = array();
+        $products['products'] = $productDetails;
         $products["latest"] = $productService->customProducts('LATEST');
                 
-        return $this->render('AppBundle::productDetail.html.twig', array('products' => $products));
+        return $this->render('AppBundle::products.html.twig', array('products' => $products));
     }
 }
