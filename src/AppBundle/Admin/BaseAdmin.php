@@ -37,33 +37,4 @@ class BaseAdmin extends Admin
              ));
         return true;
     }
-    
-//    /**
-//     * Function to get custom data source iterator to customize exports
-//     * 
-//     * @return AppORMQuerySourceIterator
-//     */
-//    public function getDataSourceIterator()
-//    {
-//        $datagrid = $this->getDatagrid();
-//        $datagrid->buildPager();
-//        $fields=$this->getExportFields();
-//        $query = $datagrid->getQuery();
-//        $query->select('DISTINCT ' . $query->getRootAlias());
-//        $query->setFirstResult(null);
-//        $query->setMaxResults(null);
-//
-//        if ($query instanceof ProxyQueryInterface) {
-//            
-//            if($query->getSortBy()) {
-//                $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
-//            }
-//            $query = $query->getQuery();
-//        }
-//
-//        $dsi = new AppORMQuerySourceIterator($query, $fields, 'Y-m-d H:i:s');
-//        $dsi->setTimezone('Asia/Rangoon'); // falling back to MMT
-//
-//        return $dsi;
-//    }
 }

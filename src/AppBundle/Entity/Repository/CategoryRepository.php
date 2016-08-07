@@ -11,6 +11,9 @@ namespace AppBundle\Entity\Repository;
 
 class CategoryRepository extends GenericRepository
 {
+    /*
+     * Function to get all active Categories
+     */
     public function getActiveCategories() {
         $categories = $this->createQueryBuilder('c')
             ->select('c.id as id')
