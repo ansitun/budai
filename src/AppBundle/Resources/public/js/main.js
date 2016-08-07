@@ -1,5 +1,32 @@
 jQuery(document).ready(function($){
     
+    $( "#search" ).autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "search",
+                data: {q: request.term, },
+                dataType: "json",
+                success: function(data) {
+                    var a = [];
+                    for ( var i in data  ) {
+                        if ( 'undefined' !== typeof data[i]["name"] ) {
+                            a.push(data[i]["name"]);
+                        }
+                    }
+                    response(a);
+                },
+                select: function(event, ui) { 
+                        console.log(ui);
+                }
+            });
+        }
+    });
+    
+    $( "#bing" ).bind( "autocompleteselect", function(event, ui) {
+        console.log(ui);
+        
+    });
+    
     // jQuery sticky Menu
     
 	$(".mainmenu-area").sticky({topSpacing:0});

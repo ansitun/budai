@@ -104,7 +104,7 @@ class HomeController extends Controller
         $productService = $this->get('budai.product');
         $productDetails = $productService->searchProducts($searchKey);
         if(!$productDetails) {
-            $productDetails = array('errorCode' => 404, 'errorMsg' => 'Category Not Found');
+            $productDetails = array('errorCode' => 404, 'errorMsg' => 'Product Not Found');
         }
         
         // Return json response for search
