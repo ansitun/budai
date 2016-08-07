@@ -110,4 +110,30 @@ class ProductRepository extends GenericRepository
         
         return $category;
     }
+    
+    /*
+     * Function to return active products based on searchkey
+     */
+    public function findByNameOrKeyWords($searchKey) {
+        $qb = $this->createQueryBuilder('p')
+                ->select('p.name as name')
+                ->addSelect('p.price as originalPrice')
+                ->addSelect('p.discount_price as discountPrice')
+                ->addSelect('p.sku as sku')
+                ->addSelect('p.key_words as tags')
+                ->join('p.status', 's')
+                ->where("s.string_value NOT IN ('DELETED', 'INACTIVE')");
+
+        // Add expression search
+        $qb->andWhere($qb->expr()->like('p.name', ':name'))
+                ->orWhere($qb->expr()->like('p.key_words', ':key'))
+                ->setParameter('name', '%' . $searchKey . '%')
+                ->setParameter('key', '%' . $searchKey . '%')
+        ;
+
+        // Get products list
+        $products = $qb->getQuery()->getArrayResult();
+
+        return $products;
+    }
 }

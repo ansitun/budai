@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends Controller
 {
@@ -89,5 +90,24 @@ class HomeController extends Controller
         
                 
         return $this->render('AppBundle::products.html.twig', array('products' => $products, 'category' => $category));
+    }
+    
+    /**
+     * @Route("search", name="search")
+     */
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $searchKey = $request->query->get('term');
+        
+        // Get products details or return error
+        $productService = $this->get('budai.product');
+        $productDetails = $productService->searchProducts($searchKey);
+        if(!$productDetails) {
+            $productDetails = array('errorCode' => 404, 'errorMsg' => 'Category Not Found');
+        }
+        
+        // Return json response for search
+        return new JsonResponse($productDetails);
     }
 }

@@ -67,4 +67,21 @@ class ProductRequestService extends AbstractService {
 
         return $categoryName;
     }
+    
+    /**
+     * Function to return products based on search key
+     *
+     * @param string $searchKey
+     *
+     * @return array
+     */
+    public function searchProducts($searchKey)
+    {
+        $doctrine = $this->getDoctrine();
+        $productRepo = $doctrine->getRepository("AppBundle:Product");
+        
+        $products = $productRepo->findByNameOrKeyWords($searchKey);
+        
+        return $products;
+    }
 }
