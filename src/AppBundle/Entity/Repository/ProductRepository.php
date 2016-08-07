@@ -76,6 +76,7 @@ class ProductRepository extends GenericRepository
             ->addSelect('p.price as originalPrice')   
             ->addSelect('p.discount_price as discountPrice')
             ->addSelect('p.sku as sku')
+            ->addSelect('c.name as categoryName')    
             ->leftJoin('AppBundle:ProductCategory', 'pc', \Doctrine\ORM\Query\Expr\Join::WITH, 'pc.product = p')
             ->join('pc.category', 'c')
             ->join('c.status', 'cs')

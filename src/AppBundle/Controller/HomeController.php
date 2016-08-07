@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class HomeController extends Controller
 {
     /**
      * @Route("/", name="homepage")
@@ -80,6 +80,7 @@ class DefaultController extends Controller
         // Get Products service to show the latest products at bottom
         $products = array();
         $products['products'] = $productDetails;
+        $products['productCategory'] = $em->getRepository("AppBundle:Category")->findOneById($category)->getName();
         $products["latest"] = $productService->customProducts('LATEST');
         
         // Get Categories using category service

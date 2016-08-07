@@ -1,3 +1,7 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block productCategory %} 
+
 <!-- will be repalced with recomendations -->                                    
 <div class="maincontent-area">
     <div class="zigzag-bottom"></div>
@@ -5,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="latest-product">
-                    <h2 class="section-title">Recomended Products</h2>
+                    <h2 class="section-title">Products related to <u>{{ products["productCategory"] }}</u></h2>
                     <div class="product-carousel">
                         <!-- will be replaced with recomemded products -->
                      {% for product in products['products'] %}   
@@ -29,3 +33,5 @@
     </div>
 </div> 
 <!-- End main content area -->
+
+{% endblock%}
